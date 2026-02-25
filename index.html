@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Greeshma Ganji | Senior QA Engineer</title>
+<style>
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --border: #e2e6f0;
+    --accent: #1560f6;
+    --accent2: #0d3db8;
+    --accent-light: #e8effe;
+    --text: #0f1724;
+    --muted: #5a6481;
+    --tag-bg: #eef1fb;
+    --shadow: 0 2px 16px rgba(21,96,246,0.07);
+    --shadow-hover: 0 8px 32px rgba(21,96,246,0.13);
+  }
+  [data-theme="dark"] {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #22222e;
+    --accent: #4d8bff;
+    --accent2: #2563eb;
+    --accent-light: #1a2540;
+    --text: #e2e2f0;
+    --muted: #7a7a9a;
+    --tag-bg: #1e1e2e;
+    --shadow: 0 2px 16px rgba(0,0,0,0.3);
+    --shadow-hover: 0 8px 32px rgba(77,139,255,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7;transition:background .3s,color .3s;}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;background:rgba(244,246,250,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:100;transition:background .3s,border-color .3s;}
+  [data-theme="dark"] nav{background:rgba(10,10,15,0.92);}
+  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:62px;padding:0 5%;}
+  .nav-logo{font-weight:800;font-size:.95rem;letter-spacing:.04em;color:var(--accent);}
+  .nav-logo span{color:var(--text);}
+  .nav-right{display:flex;align-items:center;gap:2rem;}
+  nav ul{list-style:none;display:flex;gap:2rem;}
+  nav a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.03em;transition:color .2s;}
+  nav a:hover{color:var(--accent);}
+  .theme-toggle{background:var(--bg);border:1px solid var(--border);border-radius:99px;width:52px;height:28px;cursor:pointer;position:relative;transition:background .3s,border-color .3s;flex-shrink:0;}
+  .toggle-thumb{position:absolute;top:3px;left:3px;width:20px;height:20px;background:var(--accent);border-radius:50%;transition:transform .3s;display:flex;align-items:center;justify-content:center;font-size:11px;}
+  [data-theme="dark"] .toggle-thumb{transform:translateX(24px);}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;align-items:center;background:var(--surface);border-bottom:1px solid var(--border);transition:background .3s,border-color .3s;}
+  .hero-inner{max-width:1100px;margin:auto;padding:120px 5% 80px;width:100%;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent-light);border:1px solid var(--border);border-radius:4px;padding:.3rem .9rem;font-size:.75rem;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.75rem;}
+  .hero-badge .dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .hero-name{font-size:clamp(2.8rem,5.5vw,4.2rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem;}
+  .hero-name .line2{color:var(--accent);}
+  .hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin-bottom:2.5rem;line-height:1.8;}
+  .hero-links{display:flex;gap:.75rem;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;border-radius:6px;font-size:.85rem;font-weight:600;text-decoration:none;transition:all .18s;letter-spacing:.02em;}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 10px rgba(21,96,246,0.25);}
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+  .btn-ghost{border:1.5px solid var(--border);color:var(--text);background:transparent;}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+  .hero-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:2rem;min-width:240px;box-shadow:var(--shadow);transition:background .3s,border-color .3s;}
+  .hero-card h3{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;}
+  .stat-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border);transition:border-color .3s;}
+  .stat-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+  .stat-num{font-size:1.6rem;font-weight:800;color:var(--accent);}
+  .stat-label{font-size:.8rem;color:var(--muted);}
+
+  /* SECTIONS */
+  .section-wrap{padding:90px 5%;}
+  .section-inner{max-width:1100px;margin:auto;}
+  .section-label{font-size:.72rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:.6rem;}
+  h2{font-size:2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:2.5rem;}
+
+  /* ABOUT */
+  #about{background:var(--bg);transition:background .3s;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+  .about-text p{color:var(--muted);margin-bottom:1rem;font-size:.95rem;}
+  .about-text p strong{color:var(--text);}
+  .about-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
+  .tag{background:var(--tag-bg);border:1px solid var(--border);border-radius:4px;padding:.25rem .7rem;font-size:.78rem;color:var(--muted);font-weight:500;transition:background .3s,border-color .3s;}
+  .tag.accent{background:var(--accent-light);border-color:var(--border);color:var(--accent);font-weight:600;}
+  .about-checklist{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;box-shadow:var(--shadow);transition:background .3s,border-color .3s;}
+  .about-checklist h3{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;font-weight:700;}
+  .check-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem;font-size:.9rem;color:var(--text);padding-bottom:.85rem;border-bottom:1px solid var(--border);transition:border-color .3s;}
+  .check-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+  .check-icon{width:20px;height:20px;background:var(--accent-light);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent);font-size:.75rem;font-weight:700;margin-top:.15rem;}
+
+  /* EXPERIENCE */
+  #experience{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .3s,border-color .3s;}
+  .timeline{position:relative;padding-left:2.5rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent) 0%,var(--border) 100%);}
+  .tl-item{position:relative;margin-bottom:3rem;}
+  .tl-dot{position:absolute;left:-2.9rem;top:.3rem;width:12px;height:12px;background:var(--accent);border-radius:50%;border:2.5px solid var(--surface);}
+  .tl-date{font-size:.72rem;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:.35rem;}
+  .tl-role{font-size:1.1rem;font-weight:800;margin-bottom:.2rem;letter-spacing:-.01em;}
+  .tl-company{font-size:.85rem;color:var(--muted);margin-bottom:1rem;}
+  .tl-bullets{list-style:none;}
+  .tl-bullets li{font-size:.875rem;color:var(--muted);padding:.25rem 0 .25rem 1.1rem;position:relative;}
+  .tl-bullets li::before{content:"—";position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.35rem;}
+  .tl-highlight{display:inline-flex;align-items:center;gap:.4rem;background:var(--accent-light);border:1px solid var(--border);border-radius:4px;padding:.2rem .65rem;font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:.75rem;}
+
+  /* SKILLS */
+  #skills{background:var(--bg);transition:background .3s;}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;}
+  .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;box-shadow:var(--shadow);transition:box-shadow .2s,transform .2s,background .3s,border-color .3s;}
+  .skill-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px);}
+  .skill-card h3{font-size:.7rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:1rem;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+  .skill-tag{background:var(--tag-bg);border:1px solid var(--border);border-radius:4px;padding:.22rem .6rem;font-size:.78rem;color:var(--text);font-weight:500;transition:background .3s,border-color .3s;}
+  .skill-tag.hot{background:var(--accent-light);border-color:var(--border);color:var(--accent);font-weight:600;}
+
+  /* PROJECTS */
+  #projects{background:var(--surface);border-top:1px solid var(--border);transition:background .3s,border-color .3s;}
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.25rem;}
+  .proj-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.75rem;transition:box-shadow .2s,border-color .2s,transform .2s,background .3s;}
+  .proj-card:hover{border-color:var(--accent);box-shadow:var(--shadow-hover);transform:translateY(-2px);}
+  .proj-card h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem;}
+  .proj-card p{font-size:.85rem;color:var(--muted);margin-bottom:1rem;}
+  .proj-tech{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;}
+  .proj-card a{font-size:.8rem;color:var(--accent);text-decoration:none;font-weight:600;}
+
+  /* CERTS + AWARDS */
+  #certs{background:var(--bg);border-top:1px solid var(--border);transition:background .3s,border-color .3s;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+  .list-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.4rem;margin-bottom:.75rem;box-shadow:var(--shadow);transition:background .3s,border-color .3s;}
+  .list-card h3{font-size:.9rem;font-weight:700;margin-bottom:.2rem;}
+  .list-card p{font-size:.8rem;color:var(--muted);}
+  .list-card a{color:var(--accent);text-decoration:none;font-weight:600;font-size:.8rem;}
+
+  /* CONTACT */
+  #contact{background:var(--accent);border-top:1px solid var(--border);}
+  #contact .section-label{color:rgba(255,255,255,0.6);}
+  #contact h2{color:#fff;}
+  #contact p{color:rgba(255,255,255,0.75);max-width:480px;margin:0 auto 2rem;font-size:.95rem;}
+  #contact .section-inner{text-align:center;}
+  .contact-links{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+  .btn-white{background:#fff;color:var(--accent);font-weight:700;}
+  .btn-white:hover{background:#eef1fb;transform:translateY(-1px);}
+  .btn-outline-white{border:1.5px solid rgba(255,255,255,0.4);color:#fff;background:transparent;}
+  .btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+
+  footer{text-align:center;padding:1.75rem;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);background:var(--surface);transition:background .3s,border-color .3s;}
+
+  @media(max-width:768px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-card{display:none;}
+    .about-grid,.two-col{grid-template-columns:1fr;}
+    nav ul{gap:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">GG<span> · QA</span></div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <div class="toggle-thumb" id="toggleIcon">🌙</div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> Actively seeking QA opportunities</div>
+      <h1 class="hero-name">Greeshma Ganji<br><span class="line2">Software QA Engineer.</span></h1>
+      <p class="hero-sub">4+ years validating web, mobile, cloud, and medical-grade systems — end-to-end. Manual, automated, and AI-assisted. I catch issues before they reach your customers.</p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="assets/documents/Greeshma-Ganji-Resume.pdf" target="_blank">↓ Resume</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/ganjigreeshma" target="_blank">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/greeshmaganji" target="_blank">GitHub</a>
+        <a class="btn btn-ghost" href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>By the Numbers</h3>
+      <div class="stat-row"><span class="stat-num">4+</span><span class="stat-label">Years in QA</span></div>
+      <div class="stat-row"><span class="stat-num">500+</span><span class="stat-label">Test Cases Owned</span></div>
+      <div class="stat-row"><span class="stat-num">15+</span><span class="stat-label">Releases Managed</span></div>
+      <div class="stat-row"><span class="stat-num">99%</span><span class="stat-label">Pre-Production Defect Catch Rate</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="section-wrap">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">About Me</div>
+          <h2>Built for quality.<br>Driven by detail.</h2>
+          <p>I'm a <strong>Software QA Engineer</strong> with an M.S. in Information Technology & Analytics from RIT. I've served as a <strong>sole QA engineer</strong> owning 500+ test cases across 15+ releases — managing the full testing lifecycle from test plan creation through production sign-off.</p>
+          <p>I combine structured test design techniques like <strong>boundary value analysis and equivalence partitioning</strong> with Selenium and Playwright automation, SQL database validation, and AI-assisted workflows to deliver efficient, thorough coverage across web, mobile, cloud, and FDA-regulated systems.</p>
+          <div class="about-tags">
+            <span class="tag accent">Selenium & Playwright</span>
+            <span class="tag accent">Manual & Exploratory Testing</span>
+            <span class="tag accent">SQL Validation</span>
+            <span class="tag accent">API Testing</span>
+            <span class="tag">Java · C++</span>
+            <span class="tag">Azure DevOps CI/CD</span>
+            <span class="tag">Agile / SCRUM</span>
+            <span class="tag">AI-Assisted Testing</span>
+          </div>
+        </div>
+        <div class="about-checklist">
+          <h3>Core Competencies</h3>
+          <div class="check-item"><div class="check-icon">✓</div>Sole QA ownership — 500+ test cases, 15+ releases, 100% pre-production defect catch rate</div>
+          <div class="check-item"><div class="check-icon">✓</div>Structured test design using boundary value analysis & equivalence partitioning</div>
+          <div class="check-item"><div class="check-icon">✓</div>Selenium WebDriver & Playwright automation integrated into CI/CD</div>
+          <div class="check-item"><div class="check-icon">✓</div>SQL query writing for backend data integrity and business logic validation</div>
+          <div class="check-item"><div class="check-icon">✓</div>REST API & SOAP validation — Postman, SOAP UI</div>
+          <div class="check-item"><div class="check-icon">✓</div>AI tools (ChatGPT, Copilot) — reduced documentation time by 60–70%</div>
+          <div class="check-item"><div class="check-icon">✓</div>Cross-platform mobile testing — iOS & Android</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience">
+  <div class="section-wrap">
+    <div class="section-inner">
+      <div class="section-label">Career</div>
+      <h2>Experience</h2>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Jan 2025 – Jan 2026</div>
+          <div class="tl-role">Software Quality Assurance Engineer</div>
+          <div class="tl-company">Continual Care Solutions, Inc. — Pittsford, NY</div>
+          <div class="tl-highlight">⭐ Sole QA Engineer · 500+ Test Cases · 99% Pre-Production Defect Catch Rate</div>
+          <ul class="tl-bullets">
+            <li>Owned full testing lifecycle across 15+ releases and 500+ test cases for web and mobile (iOS) SaaS platforms — functional, regression, exploratory, smoke, and E2E</li>
+            <li>Designed structured test cases using boundary value analysis and equivalence partitioning for systematic edge-case and high-risk coverage</li>
+            <li>Wrote and executed SQL queries to validate data integrity, verify business logic, and confirm data flow through client-server systems</li>
+            <li>Developed Selenium WebDriver regression suites and contributed to early-stage Playwright automation framework (~15 test cases), both integrated with Azure DevOps CI/CD</li>
+            <li>Managed 50+ defects per release cycle including 4–5 critical issues; performed root-cause analysis and verified all fixes — achieving 99% pre-production defect catch rate</li>
+            <li>Executed 120+ user stories/month; tracked QA metrics and reported status to engineering, product, and Customer Success stakeholders</li>
+            <li>Leveraged AI tools (ChatGPT, GitHub Copilot) to reduce documentation time by 60–70% across 120+ stories/month</li>
+            <li>Established comprehensive QA process documentation ensuring full traceability from requirements through defect closure in Azure DevOps</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Sep 2024 – Dec 2024</div>
+          <div class="tl-role">QA Tester Intern</div>
+          <div class="tl-company">NYC Gravity Net — Melville, NY</div>
+          <ul class="tl-bullets">
+            <li>Executed manual & Selenium automated tests across 2–3 concurrent client projects using exploratory and scripted approaches based on feature risk</li>
+            <li>Cross-platform mobile and UI testing on iPhone, Android, and Windows for functional behavior and responsiveness</li>
+            <li>Backend API testing via Postman and SOAP UI — data integrity, load behavior, client-server validation</li>
+            <li>Logged and triaged defects in JIRA with detailed reproduction steps across simultaneous project workstreams</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Jan 2023 – Jun 2023</div>
+          <div class="tl-role">QA Intern</div>
+          <div class="tl-company">Transonic Systems, Inc. — Ithaca, NY</div>
+          <ul class="tl-bullets">
+            <li>Designed and executed 150–180 system-level test cases for FDA-regulated medical devices, validating hardware-software integration per regulatory guidelines</li>
+            <li>Applied Java and C++ to automate data checks and streamline hardware-software validation workflows</li>
+            <li>Documented 15–20 integration defects in GitLab; collaborated on root-cause analysis and verified fixes via GitLab CI/CD pipelines</li>
+            <li>Maintained audit-ready documentation ensuring full traceability aligned with FDA compliance standards</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Jul 2020 – Aug 2021</div>
+          <div class="tl-role">Cloud QA Analyst</div>
+          <div class="tl-company">Tata Consultancy Services — Hyderabad, India</div>
+          <ul class="tl-bullets">
+            <li>Developed test plans for multi-environment AWS EC2 cloud infrastructure for Ericsson — scalability, performance, and reliability validation</li>
+            <li>API and backend testing via SOAP UI & Postman across distributed client-server architectures</li>
+            <li>Performance and load testing with JMeter to identify bottlenecks and ensure SLA compliance</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div class="section-wrap">
+    <div class="section-inner">
+      <div class="section-label">Capabilities</div>
+      <h2>Skills</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <h3>Automation & Frameworks</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Selenium WebDriver</span>
+            <span class="skill-tag hot">Playwright</span>
+            <span class="skill-tag">Automated Regression Suites</span>
+            <span class="skill-tag">CI/CD Pipeline Integration</span>
+            <span class="skill-tag">Test Script Maintenance</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Programming</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Java</span>
+            <span class="skill-tag hot">SQL</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">OOP Concepts</span>
+            <span class="skill-tag">Automation Scripting</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Testing Types</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Functional</span>
+            <span class="skill-tag">Regression</span>
+            <span class="skill-tag">Exploratory</span>
+            <span class="skill-tag hot">Boundary Value Analysis</span>
+            <span class="skill-tag hot">Equivalence Partitioning</span>
+            <span class="skill-tag">Smoke & Sanity</span>
+            <span class="skill-tag">Integration</span>
+            <span class="skill-tag">E2E</span>
+            <span class="skill-tag">UAT</span>
+            <span class="skill-tag">Cross-Browser</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>API & Backend</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Postman</span>
+            <span class="skill-tag">SOAP UI</span>
+            <span class="skill-tag">REST API Testing</span>
+            <span class="skill-tag">Backend Data Validation</span>
+            <span class="skill-tag">JMeter</span>
+            <span class="skill-tag">Client-Server Testing</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Database & SQL</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">SQL Query Writing</span>
+            <span class="skill-tag">MS SQL</span>
+            <span class="skill-tag">Database Validation</span>
+            <span class="skill-tag">Data Integrity Testing</span>
+            <span class="skill-tag">Business Logic Validation</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Test Management</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Azure DevOps</span>
+            <span class="skill-tag">JIRA</span>
+            <span class="skill-tag">GitLab</span>
+            <span class="skill-tag">Confluence</span>
+            <span class="skill-tag">Test Plan Design</span>
+            <span class="skill-tag">Defect Triage</span>
+            <span class="skill-tag">Root-Cause Analysis</span>
+            <span class="skill-tag">QA Metrics Tracking</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Mobile & Web</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">iOS Testing</span>
+            <span class="skill-tag">Android Testing</span>
+            <span class="skill-tag">Cross-Platform QA</span>
+            <span class="skill-tag">Responsive Testing</span>
+            <span class="skill-tag">Cross-Browser Testing</span>
+            <span class="skill-tag">Web Application Testing</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Cloud & Infrastructure</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">AWS EC2</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">Multi-Environment Testing</span>
+            <span class="skill-tag">CI/CD Pipeline Testing</span>
+            <span class="skill-tag">System Log Analysis</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>AI & Emerging Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">ChatGPT</span>
+            <span class="skill-tag hot">GitHub Copilot</span>
+            <span class="skill-tag">AI-Assisted Testing</span>
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">Local LLM Deployment</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Domain Experience</h3>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Healthcare SaaS</span>
+            <span class="skill-tag hot">FDA-Regulated Medical Devices</span>
+            <span class="skill-tag">Cloud Infrastructure</span>
+            <span class="skill-tag">Hardware-Software Integration</span>
+            <span class="skill-tag">Embedded Systems</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Process & SDLC</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Agile / SCRUM</span>
+            <span class="skill-tag">Waterfall</span>
+            <span class="skill-tag">Sprint Planning</span>
+            <span class="skill-tag">Release Readiness</span>
+            <span class="skill-tag">Acceptance Criteria Validation</span>
+            <span class="skill-tag">Requirements Review</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Documentation & Reporting</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Test Case Design</span>
+            <span class="skill-tag">Technical Documentation</span>
+            <span class="skill-tag">Defect Lifecycle Management</span>
+            <span class="skill-tag">Stakeholder Reporting</span>
+            <span class="skill-tag">FDA Compliance Docs</span>
+            <span class="skill-tag">Requirements Traceability</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects">
+  <div class="section-wrap">
+    <div class="section-inner">
+      <div class="section-label">Work</div>
+      <h2>Projects</h2>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <h3>NYC Flood Risk & Sea-Level Rise</h3>
+          <p>GIS analysis mapping 34.8% of NYC land at flood risk, highlighting critical vulnerabilities from past flooding.</p>
+          <div class="proj-tech"><span class="tag">GIS</span><span class="tag">Python</span><span class="tag">ArcGIS</span></div>
+          <a href="https://arcg.is/SWbSP" target="_blank">View Project →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Sales Prediction with Ensemble Methods</h3>
+          <p>Improved sales forecast accuracy by 10% using regression trees, bagging, and random forests in R.</p>
+          <div class="proj-tech"><span class="tag">R</span><span class="tag">Random Forests</span><span class="tag">Bagging</span></div>
+          <a href="http://rpubs.com/ganjigreeshma/sales" target="_blank">View Project →</a>
+        </div>
+        <div class="proj-card">
+          <h3>House Prices Visual Analysis – Rochester</h3>
+          <p>Interactive dashboard visualizing house sales trends and property values across Rochester neighborhoods.</p>
+          <div class="proj-tech"><span class="tag">Tableau</span><span class="tag">Python</span></div>
+          <a href="https://public.tableau.com/shared/MJDB6BRZ9?:display_count=n&:origin=viz_share_link" target="_blank">View Project →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Congressional Vote Clustering</h3>
+          <p>Unsupervised ML and neural networks to identify patterns in congressional voting behavior.</p>
+          <div class="proj-tech"><span class="tag">Python</span><span class="tag">Neural Networks</span><span class="tag">Clustering</span></div>
+          <a href="https://github.com/greeshmaganji/RIT-DSCI-633-FDS/tree/main/Assignments/DSCI%20PROJECT" target="_blank">View Project →</a>
+        </div>
+        <div class="proj-card">
+          <h3>COVID-19 Impact Website</h3>
+          <p>Desktop & mobile site for RIT students exploring COVID-19's impacts on work, collaboration, and education.</p>
+          <div class="proj-tech"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
+          <a href="http://solace.ist.rit.edu/~gg1849/645/project1/index.html" target="_blank">View Project →</a>
+        </div>
+        <div class="proj-card">
+          <h3>OJ Purchase Prediction – Decision Tree</h3>
+          <p>Decision tree model predicting OJ purchases with cross-validation and detailed performance evaluation.</p>
+          <div class="proj-tech"><span class="tag">R</span><span class="tag">Decision Trees</span><span class="tag">RStudio</span></div>
+          <a href="https://rpubs.com/ganjigreeshma/oj" target="_blank">View Project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTS + AWARDS -->
+<div id="certs">
+  <div class="section-wrap">
+    <div class="section-inner">
+      <div class="two-col">
+        <div>
+          <div class="section-label">Credentials</div>
+          <h2>Certifications</h2>
+          <div class="list-card"><h3>Data Engineering</h3><p>ESRI &nbsp;·&nbsp; <a href="https://www.esri.com/training/TrainingRecord/Certificate/gg1849@rit.edu_RITArcGIS/64ff70fcbd428911ccf80aff/240" target="_blank">View Certificate →</a></p></div>
+          <div class="list-card"><h3>HTML5</h3><p>University of Michigan &nbsp;·&nbsp; <a href="https://www.coursera.org/account/accomplishments/certificate/4VYJVFXDFZS3" target="_blank">View Certificate →</a></p></div>
+          <div class="list-card"><h3>Python for Everybody</h3><p>University of Michigan &nbsp;·&nbsp; <a href="https://www.coursera.org/account/accomplishments/certificate/U6D45EJQMLT7" target="_blank">View Certificate →</a></p></div>
+        </div>
+        <div>
+          <div class="section-label">Recognition</div>
+          <h2>Awards</h2>
+          <div class="list-card"><h3>Graduate Scholarship — 30%</h3><p>Rochester Institute of Technology · 2021–2024</p></div>
+          <div class="list-card"><h3>Special Initiative Award</h3><p>Tata Consultancy Services · Feb 2021</p></div>
+          <div class="list-card"><h3>Post Matric Scholarship — 35%</h3><p>Anurag Group of Institutions · 2016–2020</p></div>
+          <div class="list-card"><h3>Merit Scholarship</h3><p>Indian Oil Corporation of India · 2014–2015</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="section-wrap">
+    <div class="section-inner">
+      <div class="section-label">Get in Touch</div>
+      <h2>Let's Work Together</h2>
+      <p>Open to full-time Software QA roles and relocation. If you need someone who catches bugs before your users do — let's talk.</p>
+      <div class="contact-links">
+        <a class="btn btn-white" href="mailto:ganjigreeshma@gmail.com">✉ ganjigreeshma@gmail.com</a>
+        <a class="btn btn-outline-white" href="https://linkedin.com/in/ganjigreeshma" target="_blank">LinkedIn</a>
+        <a class="btn btn-outline-white" href="tel:5852105642">📞 (585) 210-5642</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Greeshma Ganji · Software QA Engineer · Rochester, NY</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('toggleIcon');
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    icon.textContent = isDark ? '🌙' : '☀️';
+  }
+</script>
+</body>
+</html>
